@@ -1,4 +1,4 @@
-package com.example.photos_homework.presentation
+package com.example.photos_homework.presentation.screen.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -24,7 +24,7 @@ fun MainContent(navController: NavHostController) {
 
             composable<Routes.PhotoDetail> { entry ->
                 val args = entry.toRoute<Routes.PhotoDetail>()
-                PhotoDetailScreen(args.photoId)
+                PhotoDetailScreen(navController, args.photoId)
             }
         }
     }

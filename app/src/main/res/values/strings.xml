@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">photos-homework</string>
+    <string name="title_photo_list">PhotoList</string>
+    <string name="title_photo_detail">Photos Detail</string>
+    <string name="title_photo_detail_favourite">Photos Detail(Favourite)</string>
+    <string name="title_photo_list_favourite">Photo List (Favourite)</string>
 </resources>

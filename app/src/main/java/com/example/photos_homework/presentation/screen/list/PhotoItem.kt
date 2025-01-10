@@ -74,15 +74,13 @@ fun PhotoItem(
             )
 
             Icon(
-                imageVector = if (photo.isFavorite) Icons.Outlined.AddAPhoto
-                else Icons.Outlined.StarOutline,  // Icons.Filled.Star
+                imageVector = if (photo.isFavorite) Icons.Outlined.Star
+                else Icons.Outlined.StarOutline,
                 contentDescription = "Favourite",
                 modifier = Modifier
-                    .size(48.dp)
-                    .padding(horizontal = 8.dp)
-                    .clickable { onClickStar(photo.id) }.also {
-                       if(photo.isFavorite) println("hanz photoId item ${photo.id}")
-                    },
+                    .size(60.dp)
+                    .padding(12.dp)
+                    .clickable { onClickStar(photo.id) },
                 tint = Color.Black,
             )
         }

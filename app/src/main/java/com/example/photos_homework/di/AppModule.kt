@@ -5,14 +5,10 @@ import com.example.photos_homework.data.api.PhotoApi
 import com.example.photos_homework.data.api.PhotoApi.Companion.BASE_URL
 import com.example.photos_homework.domain.repository.CacheRepository
 import com.example.photos_homework.domain.repository.PhotoRepository
-import com.example.photos_homework.presentation.EventHandler
-import com.example.photos_homework.presentation.event.TopBarEvent
-import com.example.photos_homework.presentation.screen.list.PhotoListViewModel
-import com.example.photos_homework.presentation.viewmodel.TopBarViewModel
+import com.example.photos_homework.presentation.viewmodel.PhotoViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -37,7 +33,5 @@ val appModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    single { EventHandler(get()) }
-    viewModelOf(::PhotoListViewModel)
-    viewModelOf(::TopBarViewModel)
+    viewModelOf(::PhotoViewModel)
 }
