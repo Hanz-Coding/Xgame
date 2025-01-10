@@ -1,12 +1,18 @@
 package com.example.photos_homework.di
 
 import com.example.photos_homework.data.PhotoRepositoryImpl
+import com.example.photos_homework.data.api.PhotoApi
 import com.example.photos_homework.data.api.PhotoApi.Companion.BASE_URL
-import com.example.photos_homework.domain.PhotoRepository
-import com.example.photos_homework.presentation.PhotoViewModel
+import com.example.photos_homework.domain.repository.CacheRepository
+import com.example.photos_homework.domain.repository.PhotoRepository
+import com.example.photos_homework.presentation.EventHandler
+import com.example.photos_homework.presentation.event.TopBarEvent
+import com.example.photos_homework.presentation.screen.list.PhotoListViewModel
+import com.example.photos_homework.presentation.viewmodel.TopBarViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -14,7 +20,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
     single { PhotoRepositoryImpl(get()) }.bind<PhotoRepository>()
-
+    single { CacheRepository() }
+    single { get<Retrofit>().create(PhotoApi::class.java) }
     single {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -30,5 +37,7 @@ val appModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    viewModelOf(::PhotoViewModel)
+    single { EventHandler(get()) }
+    viewModelOf(::PhotoListViewModel)
+    viewModelOf(::TopBarViewModel)
 }

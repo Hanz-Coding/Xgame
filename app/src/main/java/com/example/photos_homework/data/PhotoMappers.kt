@@ -5,10 +5,10 @@ import com.example.photos_homework.domain.Photo
 
 fun PhotoDto.toDomain(): Photo {
     return Photo(
-        albumId = albumId,
-        id = id,
-        title = title,
-        url = url,
-        thumbnailUrl = thumbnailUrl
+        albumId = albumId ?: 0,
+        id = id ?: 0,
+        title = title ?: "",
+        url = url ?: "",
+        thumbnailUrl = thumbnailUrl ?: ""
     )
 }
